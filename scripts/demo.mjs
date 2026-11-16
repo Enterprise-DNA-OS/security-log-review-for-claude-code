@@ -5,7 +5,7 @@ import { spawnSync } from 'node:child_process';
 import { REPO_ROOT } from './lib/db.mjs';
 const dir=fs.mkdtempSync(path.join(os.tmpdir(),'log-review-demo-'));
 const env={...process.env,DATABASE_URL:'',DATA_DIR:path.join(dir,'db'),OUTPUT_DIR:dir};
-function call(script,args=[]){const r=spawnSync(process.execPath,[path.join(REPO_ROOT,'scripts',script),...args],{cwd:REPO_ROOT,env,encoding:'utf8'});if(r.status!==0)throw Error(r.stderr||r.stdout);return r.stdout.trim();}
+function call(script,args=[]){const r=spawnSync(process.execPath,[path.join(REPO_ROOT,'scripts',script),...args],{cwd:REPO_ROOT,env,encoding:'utf8'});if(r.status!==0)throw Error(r.stderr||r.stdout);return r.stdout.trimEnd();}
 try{
  call('migrate.mjs');call('seed.mjs');
  const screens=[];
