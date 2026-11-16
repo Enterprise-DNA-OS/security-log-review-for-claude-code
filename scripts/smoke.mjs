@@ -71,6 +71,8 @@ try{
  process.env.DATA_DIR=path.join(dir,'demo-db');equal(child('migrate.mjs').status,0);equal(child('seed.mjs').status,0);equal(child('seed.mjs').status,0);
  db=await getDb();equal((await exec('events')).length,8);equal((await exec('failed-logins'))[0].failures,4);ok((await exec('attention')).some(r=>r.issue==='OVERDUE'));
  await reject(['set-policy','10000000','--owner=Mere','--gap-hours=24','--retention-days=90','--basis=Test','--review-due=2030-01-01','--security-ref=A-01',by],/Ambiguous[\s\S]*HARBOUR/);
+ await db.query(`insert into events(fingerprint,source_id,occurred_at,actor,action,outcome,message,raw_record) select 'anonymous-'||n,'10000000-0000-0000-0000-000000000001',now()-interval '1 minute','','logon','failure','Missing account','{}' from generate_series(1,3) n`);
+ equal((await exec('failed-logins')).length,1);ok(!(await exec('insights','--question=6'))[0].rows.some(r=>!r.actor));
  equal([...seen].sort(),[...commands].sort());
  console.log(`PASS: ${assertions} assertions; all ${commands.length} CLI operations; atomic and repeat imports, timezone mapping, immutable evidence, closure controls, private HTML and archive`);
 }finally{if(db)await db.close();fs.rmSync(dir,{recursive:true,force:true});}

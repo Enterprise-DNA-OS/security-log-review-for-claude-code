@@ -31,3 +31,5 @@ Sources resolve by a case-insensitive exact name or UUID prefix. Cases resolve b
 Use YYYY-MM-DD for policy and due dates. Event timestamps require seconds and a timezone. Time filters use explicit ISO timestamps. --offset and --date-order apply only to imports. All review windows use UTC. Daylight-saving changes require separate exports with the correct offset or explicit offsets on each row.
 
 Read results are not paginated; narrow events with the filters for large imports. This base has no high-volume ingestion benchmark. Keep very large originals in approved archival storage and import a reviewed scope. Do not put private data into examples/ or git.
+
+Failed-login and mixed-outcome account groups exclude missing account names. Review those incomplete records through /compliance; they must not be combined as if they belonged to one person.
