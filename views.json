@@ -1,13 +1,37 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "Security Log Review for Claude Code: what needs attention, rendered by npm run view",
+    "title": "Security log review week",
+    "subtitle": "Imported records only; collection health requires a separate check",
     "sections": [
       {
-        "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "title": "Attention",
+        "sql": "select kind,item,owner,issue,detail from attention order by kind,item,issue"
+      },
+      {
+        "title": "Source coverage",
+        "sql": "select name,owner,event_count,latest_event,coverage_status from coverage order by name"
+      }
+    ]
+  },
+  {
+    "name": "privileged",
+    "title": "Privileged activity review",
+    "sections": [
+      {
+        "title": "Selected administrative events",
+        "sql": "select source,occurred_at,actor,event_code,message from event_register where event_code in ('4728','4732','4756','4672') or lower(action) like '%group membership%' order by occurred_at"
+      }
+    ]
+  },
+  {
+    "name": "compliance",
+    "title": "Stored-record checks",
+    "subtitle": "Policy and evidence findings, not a compliance certificate",
+    "sections": [
+      {
+        "title": "Review findings",
+        "sql": "select kind,item,rule,finding from compliance_findings order by kind,item,rule"
       }
     ]
   }

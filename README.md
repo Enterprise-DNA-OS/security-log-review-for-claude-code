@@ -1,115 +1,78 @@
-<h1 align="center">Security Log Review for Claude Code</h1>
+# Security Log Review for Claude Code
 
-<p align="center">
-  <strong>The open-source security log review desk that is just a database and Claude Code.</strong>
-</p>
+Own the source register, log review and investigation evidence. Imported security events in a database, worked through Claude Code, Codex, OpenCode or Cursor. MIT licensed. Built for the daily review desk around your existing log collectors.
 
-<p align="center">
-  Created by <a href="https://www.enterprisedna.co"><strong>Enterprise DNA</strong></a>. Free and open source. Works with Claude Code, Codex, OpenCode or Cursor.
-</p>
+## Three ways to use it
 
-<!-- three-doors -->
-<table align="center">
-  <tr>
-    <td align="center"><strong>Do it yourself</strong><br/>Clone it, run it, own it. Free, MIT.<br/><a href="#quick-start">Quick start</a></td>
-    <td align="center"><strong>We customise it</strong><br/>Your fields, your rules, your ManageEngine EventLog Analyzer data brought across.<br/><a href="https://enterprisedna.co/omni/book/?utm_source=github&utm_medium=readme&utm_campaign=manageengine-eventlog-analyzer">Book a call</a></td>
-    <td align="center"><strong>We run it for you</strong><br/>Installed, connected and operated inside Omni. Setup fee, then a retainer.<br/><a href="https://enterprisedna.co/omni/instead-of/manageengine-eventlog-analyzer?utm_source=github&utm_medium=readme&utm_campaign=manageengine-eventlog-analyzer">How it works</a></td>
-  </tr>
-</table>
+- **Do it yourself:** install the free version, import selected EventLog Analyzer CSV exports and work from your own database. Hosting and your coding-agent subscription remain your costs.
+- **We customise it:** Enterprise DNA maps your records, writes your source policies and review steps, and builds a web front end or different stack if you need one.
+- **We run it for you:** Omni by Enterprise DNA installs, connects and operates your version. One setup fee, then a retainer. [Book a call](https://enterprisedna.co/omni/book/?offer=replace-software&utm_campaign=manageengine-eventlog-analyzer&utm_medium=readme).
 
-<p align="center">
-  <a href="#what-is-this">What is this</a> &bull;
-  <a href="#why-no-front-end">Why no front end</a> &bull;
-  <a href="#quick-start">Quick start</a> &bull;
-  <a href="#the-commands">Commands</a> &bull;
-  <a href="#instead-of-manageengine-eventlog-analyzer">Instead of ManageEngine EventLog Analyzer</a> &bull;
-  <a href="#want-it-installed-and-run-for-you">Installed for you</a> &bull;
-  <a href="#license">License</a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Node-20+-339933?style=flat-square" alt="Node 20+" />
-  <img src="https://img.shields.io/badge/PostgreSQL-any-336791?style=flat-square" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/PGlite-embedded-3ecf8e?style=flat-square" alt="PGlite" />
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="MIT License" />
-</p>
-
----
-
-## What is this
-
-Security Log Review for Claude Code does the job you pay ManageEngine EventLog Analyzer for, as a Postgres database and a set of agent commands. There is no web front end. You open the folder in [Claude Code](https://claude.com/claude-code) (or Codex, OpenCode, Cursor: see `AGENTS.md`) and ask for what you want in plain language. It runs the right query, and it can answer questions the ManageEngine EventLog Analyzer dashboard cannot.
-
-<!-- TODO(author): the annual bill. One sentence: what a 10 to 50 person business typically pays ManageEngine EventLog Analyzer per year, all in, with a source. -->
-
-Want the same thing with a web front end, or built on a different stack? That is a customisation, and it is exactly what Enterprise DNA does: [book a call](https://enterprisedna.co/omni/book/?utm_source=github&utm_medium=readme&utm_campaign=manageengine-eventlog-analyzer).
-
-<!-- TODO(author): two or three sentences on what this specific product covers and who it is for. -->
-
-## Why no front end
-
-- The front end was only ever there because the database was hard to talk to. That is no longer true.
-- Your data sits in plain Postgres tables you own. Any tool can read them. No export, no lock-in.
-- No seats, no tiers, no add-ons. Read [docs/why-no-front-end.md](docs/why-no-front-end.md) for the honest trade-offs too.
-
-## Quick start
-
-Sixty seconds, no database install (an embedded Postgres runs inside Node):
+## Start with fictional records
 
 ```bash
-git clone https://github.com/Enterprise-DNA-OS/security-log-review-for-claude-code.git
-cd security-log-review-for-claude-code
 npm install
+npm test
 npm run demo
 ```
 
-Then open the folder in Claude Code and type a slash command. <!-- TODO(author): name the first command to try. -->
+The demo uses a temporary database and removes it afterwards. `npm run demo -- --keep` keeps the private HTML and three actual command captures in the printed temporary folder. `npm run migrate` followed by `npm run seed` creates a persistent demo. Seeding refuses an existing business workspace.
 
-### Use it with your own Postgres or Supabase
+## Start a business workspace
 
-Copy `.env.example` to `.env`, set `DATABASE_URL`, then `npm run migrate`. Same commands, shared data, no per-seat fee.
-
-## The commands
-
-<!-- TODO(author): a table of the slash commands in .claude/commands and what each one does. -->
-
-| Command | What it does |
-|---|---|
-| `/...` | ... |
-
-## Instead of ManageEngine EventLog Analyzer
-
-<!-- TODO(author): how to bring data across from ManageEngine EventLog Analyzer; link docs/replace-manageengine-eventlog-analyzer.md -->
-
-## Architecture
-
-```
-security-log-review-for-claude-code/
-  CLAUDE.md                 how the operator wants this run (routing table + house rules)
-  AGENTS.md                 the same, for Codex / OpenCode / Cursor / Gemini CLI
-  .claude/commands/         the slash commands
-  scripts/                  the CLI the commands drive
-  scripts/lib/db.mjs        one adapter: DATABASE_URL (pg) or embedded PGlite
-  supabase/migrations/      plain SQL schema
-  supabase/seed.sql         demo data
-  docs/                     the thesis and the migration guide
+```bash
+npm run migrate
+node scripts/logs.mjs init --name="Your business" --by="Your name"
+node scripts/logs.mjs import eventlog imports/search.csv --by="Your name" --dry-run
+node scripts/logs.mjs import eventlog imports/search.csv --by="Your name"
 ```
 
-## Built for coding agents
+Use a fresh DATA_DIR for business records. Read [the switching guide](docs/replace-manageengine-eventlog-analyzer.md) first: exports have selectable columns, timestamps need a timezone, and counts need reconciliation. The supplied example is fictional, not a captured vendor export.
 
-The database, CLI and command recipes work with Claude Code, Codex, OpenCode or Cursor. Ask your coding agent for a new command and have it implement and test the change against the same records.
+DATABASE_URL selects private Postgres. Otherwise DATA_DIR selects embedded PGlite, defaulting to .data/db. OUTPUT_DIR chooses the folder for reports, drafts and archives. This is one business per database and one trusted operator at a time. Actor labels are not authenticated identities. Do not expose the owner connection to a browser.
 
-## Contributing
+## The weekly rituals
 
-Issues and pull requests are welcome. Keep the shape: plain SQL, a small CLI, a slash command per recurring job, no front end.
+Use /coverage to see where imported evidence stops, /failed-logins for repeated sign-ins, /privileged-changes for selected administrative events, /cases for the investigation diary and /weekly-review for the handover. /compliance checks recorded source policies and evidence fields against the cited guidance. Every finding needs an analyst's interpretation.
 
-## Want it installed and run for you?
+There are **21 CLI operations and 26 slash recipes**. [Command syntax](docs/cli.md). Imported events, import batches, case links and history are append-only through database triggers. Imports are atomic, repeated evidence is deduplicated, and conflicting source record identities fail. A case cannot close without linked evidence and a written disposition. Closing a case records an analyst's conclusion; it never disables an account or performs an external response.
 
-Enterprise DNA installs Security Log Review for Claude Code for your business, migrates your ManageEngine EventLog Analyzer data, connects it to the rest of your tools, and runs it for you as part of **Omni**, our managed Command Center. One setup fee, then a monthly retainer.
+## Paperwork and views
 
-- Book a call: [enterprisedna.co/omni/book](https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_medium=readme&utm_campaign=manageengine-eventlog-analyzer)
-- Read more: [enterprisedna.co/omni/instead-of/manageengine-eventlog-analyzer](https://enterprisedna.co/omni/instead-of/manageengine-eventlog-analyzer?utm_source=github&utm_medium=readme&utm_campaign=manageengine-eventlog-analyzer)
+Set brand.json to your business name, logo and colours. `npm run docs` produces an investigation evidence pack per case and a logging-policy review per source. `npm run view` produces the weekly coverage view, privileged activity view and stored-record checks. /draft-case writes a private handover draft. All text is escaped and outputs stay in ignored folders. [Why there is no front end](docs/why-no-front-end.md).
 
-## License
+## Ten questions answered from your records
 
-MIT. Copyright (c) 2026 Enterprise DNA.
+/insights answers all ten today. These are included joins, not a claim that EventLog Analyzer cannot be configured to answer them.
+
+1. Which registered sources have no imported events?
+2. Which source owners have stale imported coverage?
+3. Which sources have no agreed retention period?
+4. Which imported events lack an actor, action or outcome?
+5. Which accounts have at least three failed sign-ins on one source in the last day?
+6. Which accounts have both failed and successful sign-ins on one source in the last day?
+7. Which high-severity events have no investigation link?
+8. Which open investigations are overdue?
+9. Which events are linked to more than one investigation?
+10. Which sources have events beyond their recorded retention period?
+
+## Your first hour: ten things to ask for
+
+1. Show which registered sources have no imported evidence.
+2. List repeated failed sign-ins in the last day.
+3. Find administrative group changes for review.
+4. Explain which coverage dates are stale.
+5. Open an investigation with an owner and due date.
+6. Link the exact events behind that investigation.
+7. Record the system owner's explanation as a note.
+8. Put our name on the investigation pack.
+9. Add a read-only view grouped by source owner.
+10. Add our business-unit field through /customise.
+
+## Operational limits
+
+This base reviews batch imports. It does not collect live logs, send alerts, prevent intrusions, prove an attack occurred, or certify compliance. Keep existing collection, alerting and response systems until their replacements are separately built and validated. The default administrative filter covers four Windows event codes and matching action text, not all privileged activity. Failure grouping is a review hint, not a detection guarantee. No screens are needed to run these review jobs.
+
+An export can be incomplete, and no events can mean a missing export. Register every expected source separately. The latest imported timestamp is not a live collector heartbeat. Reconcile each export's count and time range before relying on a review. When no native record number is present, identical normalised records collapse on import; obtain record numbers if identical events must be distinguished.
+
+Retention findings request a review; they never delete evidence. Database owners can bypass application controls, so protect access and keep tested backups and original exports in approved storage. JSON export is a readable archive, not an automated restore facility. [Compliance basis](docs/compliance.md), [research](docs/research.md) and [verification](docs/verification.md).

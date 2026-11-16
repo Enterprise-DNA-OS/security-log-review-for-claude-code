@@ -1,0 +1,3 @@
+Device Name,Time Generated,User Name,Action,Outcome,Event ID,Severity,Message,Record Number
+DEMO-IMPORT-01,2026-11-15T09:20:00Z,demo.operator,logon,failure,4625,warning,"Fictional example, unsuccessful sign-in",sample-1
+DEMO-IMPORT-01,2026-11-15T09:21:00Z,demo.operator,logon,success,4624,information,Fictional successful sign-in,sample-2

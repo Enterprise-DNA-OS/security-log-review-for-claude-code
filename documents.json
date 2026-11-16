@@ -1,11 +1,40 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
+    "name": "case-pack",
+    "title": "Investigation evidence pack",
+    "for_each": "select id,code from cases order by code",
+    "file": "code",
+    "sections": [
+      {
+        "title": "Case record",
+        "layout": "record",
+        "sql": "select code,title,owner,due_on,status,disposition from cases where id=$1"
+      },
+      {
+        "title": "Selected events",
+        "sql": "select e.source,e.occurred_at,e.actor,e.action,e.outcome,e.message,l.rationale from event_register e join case_events l on l.event_id=e.id where l.case_id=$1 order by e.occurred_at"
+      },
+      {
+        "title": "Operator history",
+        "sql": "select actor,action,detail,created_at from history where record_type='case' and record_id=$1 order by created_at"
+      }
+    ]
+  },
+  {
+    "name": "source-review",
+    "title": "Source logging policy review",
+    "for_each": "select id,name from sources order by name",
     "file": "name",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Recorded policy",
+        "layout": "record",
+        "sql": "select * from coverage where id=$1"
+      },
+      {
+        "title": "Findings",
+        "sql": "select rule,finding from compliance_findings where kind='source' and id=$1"
+      }
     ]
   }
 ]
