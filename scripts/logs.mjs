@@ -40,7 +40,7 @@ const readQueries={
  coverage:'select name,owner,event_count,latest_event,coverage_status from coverage order by name',
  'failed-logins':queries[4],
  'privileged-changes':"select id,source,occurred_at,actor,event_code,message from event_register where event_code in ('4728','4732','4756','4672') or lower(action) like '%privileg%' or lower(action) like '%group membership%' order by occurred_at,id",
- cases:'select * from case_register order by due_on,code',
+ cases:'select code,title,owner,due_on,status,linked_events from case_register order by due_on,code',
  history:'select * from history order by created_at,id',
  compliance:'select * from compliance_findings order by kind,item,rule,id'
 };
