@@ -1,3 +1,7 @@
+---
+description: "Read the investigation file"
+---
+
 # Read the investigation file
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

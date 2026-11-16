@@ -1,3 +1,7 @@
+---
+description: "Read operator history"
+---
+
 # Read operator history
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

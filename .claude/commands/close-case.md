@@ -1,3 +1,7 @@
+---
+description: "Record the analyst disposition"
+---
+
 # Record the analyst disposition
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

@@ -1,3 +1,7 @@
+---
+description: "Read imported event evidence"
+---
+
 # Read imported event evidence
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

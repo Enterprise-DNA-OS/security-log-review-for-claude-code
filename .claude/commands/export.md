@@ -1,3 +1,7 @@
+---
+description: "Archive the review database"
+---
+
 # Archive the review database
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

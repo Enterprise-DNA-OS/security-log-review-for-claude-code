@@ -1,3 +1,7 @@
+---
+description: "Check the imported coverage"
+---
+
 # Check the imported coverage
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

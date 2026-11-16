@@ -1,3 +1,7 @@
+---
+description: "Review selected administrative activity"
+---
+
 # Review selected administrative activity
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

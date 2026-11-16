@@ -1,3 +1,7 @@
+---
+description: "Review policy and evidence gaps"
+---
+
 # Review policy and evidence gaps
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

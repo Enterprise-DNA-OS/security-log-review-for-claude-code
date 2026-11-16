@@ -1,3 +1,7 @@
+---
+description: "Daily review queue"
+---
+
 # Daily review queue
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

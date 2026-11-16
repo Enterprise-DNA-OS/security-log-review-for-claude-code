@@ -1,3 +1,7 @@
+---
+description: "Import an EventLog Analyzer export"
+---
+
 # Import an EventLog Analyzer export
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

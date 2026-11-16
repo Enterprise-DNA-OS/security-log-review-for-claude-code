@@ -1,3 +1,7 @@
+---
+description: "Select evidence for a case"
+---
+
 # Select evidence for a case
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

@@ -1,3 +1,7 @@
+---
+description: "Ask the ten joined questions"
+---
+
 # Ask the ten joined questions
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

@@ -1,3 +1,7 @@
+---
+description: "Open an analyst review"
+---
+
 # Open an analyst review
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

@@ -10,7 +10,6 @@ Confirm export columns, timezones and expected counts. Use a dry run before impo
 
 ## Routing
 
-- /README: .claude/commands/README.md
 - /add-source: .claude/commands/add-source.md
 - /attention: .claude/commands/attention.md
 - /cases: .claude/commands/cases.md

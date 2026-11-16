@@ -1,3 +1,7 @@
+---
+description: "Record the approved source policy"
+---
+
 # Record the approved source policy
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

@@ -1,3 +1,7 @@
+---
+description: "Investigation diary"
+---
+
 # Investigation diary
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

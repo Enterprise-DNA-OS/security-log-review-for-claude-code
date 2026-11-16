@@ -1,3 +1,7 @@
+---
+description: "Start a business workspace"
+---
+
 # Start a business workspace
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

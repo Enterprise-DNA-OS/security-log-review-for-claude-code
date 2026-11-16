@@ -1,3 +1,7 @@
+---
+description: "Record an investigation note"
+---
+
 # Record an investigation note
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

@@ -1,3 +1,7 @@
+---
+description: "Review repeated failed sign-ins"
+---
+
 # Review repeated failed sign-ins
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

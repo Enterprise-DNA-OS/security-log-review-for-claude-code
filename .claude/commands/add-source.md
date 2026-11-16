@@ -1,3 +1,7 @@
+---
+description: "Register an expected source"
+---
+
 # Register an expected source
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

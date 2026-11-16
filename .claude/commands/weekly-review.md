@@ -1,3 +1,7 @@
+---
+description: "Weekly security-log review"
+---
+
 # Weekly security-log review
 
 Read CLAUDE.md and docs/compliance.md. Run these three live reads against the confirmed workspace:

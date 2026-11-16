@@ -1,3 +1,7 @@
+---
+description: "Draft the investigation handover"
+---
+
 # Draft the investigation handover
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.

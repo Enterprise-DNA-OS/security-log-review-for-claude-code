@@ -1,3 +1,7 @@
+---
+description: "Registered sources"
+---
+
 # Registered sources
 
 Read CLAUDE.md and docs/cli.md. Confirm workspace and requested scope.
